@@ -1,0 +1,27 @@
+  name: "teste-node"
+  
+  env:
+    TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+  
+  on:
+    push: 
+      branches: 
+        - release
+    workflow_dispatch:
+
+  
+  jobs:
+    build-and-test-node-24:
+      runs-on: ubuntu-latest
+      steps:
+
+        - name: baixar código
+          uses: actions/checkout@v4
+
+        - name: nodejs setup
+          uses: actions/setup-node@v6
+          with:
+            node_version: '20'
+
+        - run: npm ci
+        - run: npm test
