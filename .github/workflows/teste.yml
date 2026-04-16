@@ -16,7 +16,9 @@
       steps:
 
         - name: baixar código
-          uses: actions/checkout@v4
+          uses: actions/checkout@v6
+          with:
+            ref: release
 
         - name: nodejs setup
           uses: actions/setup-node@v6
